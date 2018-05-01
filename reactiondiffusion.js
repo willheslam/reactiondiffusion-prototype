@@ -53,14 +53,17 @@ const feedRate = 0.055
 
 const killRate = 0.062
 
-const variableFeed = (x, width) => (((x / width) * 0.0367)
+const variableFeed = (x, width) => (
+	((x / width) * 0.0367)
   + ((1.0 - (x / width)) * 0.057)
   )
 
-const variableKillModifier = (y, height) =>
-	((Math.pow(y / height, 0.6) * 0.015)
-  + ((1.0 - Math.pow(y / height, 0.6)) * -0.02)
+const variableKillModifier = (y, height) => {
+	const yFract = Math.pow(y / height, 0.6)
+	return ((yFract * 0.015)
+  + ((1.0 - yFract) * -0.02)
   ) * 0.25
+}
 
 const modifyA = (cell, x, y) =>
 	(variableFeed(x, width)) * (1.0 - cell)
