@@ -73,7 +73,7 @@ const modifyB = (cell, x, y) =>
 	)
 )
 
-const convolveAllCells = state => {
+const processAllCells = state => {
 	const ping = state.ping
 	const newA = ping ? state.a2 : state.a1
 	const oldA = ping ? state.a1 : state.a2
@@ -171,7 +171,7 @@ const scale = 1
 const iterations = 10
 const calculate = value => {
 	for(let i = 0; i < iterations; i ++){
-		value = convolveAllCells(value)
+		value = processAllCells(value)
 	}
 	return value
 }
