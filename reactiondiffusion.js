@@ -39,13 +39,8 @@ const convolve = (width, max, dataY, weightsY, boundary, cX, cY) => {
 		const finalY = cY - (wY-1)
 		const finalX = cX - (wX-1)
 		const i = coordsToIndex(width, finalX, finalY)
-		const finalI = i < 0
-		? i + max
-		: (i >= max
-			? i - max
-			: i)
 
-		sum += Math.fround(weightsY[w] * dataY[finalI])
+		sum += Math.fround(weightsY[w] * dataY[(i + max) % max])
 	}
 	return sum
 }
